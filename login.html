@@ -119,10 +119,10 @@
         <h2>Добро пожаловать</h2>
         <p class="sub">Пожалуйста, войдите в свой аккаунт</p>
 
-        <form action="dashboard.html">
+        <form id="loginForm" action="dashboard.html">
             <div class="form-group">
                 <label>Почта или Логин</label>
-                <input type="text" placeholder="Введите логин или почту" value="Велл Хома" required>
+                <input type="text" id="loginUsername" placeholder="Введите логин или почту" required>
             </div>
             <div class="form-group">
                 <label>Пароль</label>
@@ -138,5 +138,14 @@
         <a href="register.html" class="link">Нет аккаунта? Зарегистрироваться</a>
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> На главную</a>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const username = document.getElementById('loginUsername').value.trim();
+            if (username) {
+                localStorage.setItem('vpho_username', username);
+            }
+        });
+    </script>
 </body>
 </html>
