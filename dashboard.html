@@ -105,12 +105,6 @@
             color: #1e1b4b;
             font-weight: 700;
         }
-        .welcome .telegram a {
-            color: #7c3aed;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .welcome .telegram a:hover { text-decoration: underline; }
         .btn-tg {
             padding: 10px 30px;
             background: #7c3aed;
@@ -225,7 +219,6 @@
                 <a href="#">Финансы</a>
             </nav>
             <div class="user-info">
-                <!-- Имя БЕРЁТСЯ из формы регистрации (то что ввел пользователь) -->
                 <span>Привет, <strong id="usernameDisplay">Гость</strong></span>
                 <div class="avatar" id="avatarDisplay">Г</div>
                 <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти</a>
@@ -254,7 +247,6 @@
         </div>
         <div class="shop-grid">
 
-            <!-- FASI -->
             <div class="product-card">
                 <i class="fas fa-bolt"></i>
                 <h4>FASI</h4>
@@ -264,7 +256,6 @@
                 <br><button class="btn-buy" style="margin-top: 10px;" onclick="window.location.href='catalog.html'">Купить</button>
             </div>
 
-            <!-- XERO -->
             <div class="product-card">
                 <i class="fas fa-shield-halved"></i>
                 <h4>XERO</h4>
@@ -283,7 +274,6 @@
     </div>
 
     <script>
-        // Загружаем имя пользователя из localStorage (если он регистрировался)
         const savedName = localStorage.getItem('vpho_username');
         if (savedName) {
             document.getElementById('usernameDisplay').textContent = savedName;
