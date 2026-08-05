@@ -225,8 +225,9 @@
                 <a href="#">Финансы</a>
             </nav>
             <div class="user-info">
-                <span>Привет, <strong>Велл Хома</strong></span>
-                <div class="avatar">ВХ</div>
+                <!-- Имя БЕРЁТСЯ из формы регистрации (то что ввел пользователь) -->
+                <span>Привет, <strong id="usernameDisplay">Гость</strong></span>
+                <div class="avatar" id="avatarDisplay">Г</div>
                 <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти</a>
             </div>
         </header>
@@ -236,7 +237,7 @@
             <p>Мы только открылись! 🎉 Первым покупателям — скидка 20% по промокоду <strong>VPHO20</strong></p>
             <div class="telegram">
                 <span><i class="fab fa-telegram" style="color: #0088cc;"></i> Подпишись на наш Telegram и получи <strong>50 рублей на баланс</strong></span>
-                <button class="btn-tg"><i class="fab fa-telegram"></i> Подписаться</button>
+                <button class="btn-tg" onclick="window.open('https://t.me/VPHO1', '_blank')"><i class="fab fa-telegram"></i> Подписаться</button>
             </div>
         </section>
 
@@ -260,7 +261,7 @@
                 <div class="sub-name">🔥 Быстрый и надёжный</div>
                 <div class="price">от 25 ₽</div>
                 <span class="badge-new">Новинка</span>
-                <br><button class="btn-buy" style="margin-top: 10px;">Купить</button>
+                <br><button class="btn-buy" style="margin-top: 10px;" onclick="window.location.href='catalog.html'">Купить</button>
             </div>
 
             <!-- XERO -->
@@ -270,7 +271,7 @@
                 <div class="sub-name">🛡️ Надёжная защита</div>
                 <div class="price">от 15 ₽</div>
                 <span class="badge-new">Новинка</span>
-                <br><button class="btn-buy" style="margin-top: 10px;">Купить</button>
+                <br><button class="btn-buy" style="margin-top: 10px;" onclick="window.location.href='catalog.html'">Купить</button>
             </div>
 
         </div>
@@ -280,5 +281,15 @@
         </div>
 
     </div>
+
+    <script>
+        // Загружаем имя пользователя из localStorage (если он регистрировался)
+        const savedName = localStorage.getItem('vpho_username');
+        if (savedName) {
+            document.getElementById('usernameDisplay').textContent = savedName;
+            document.getElementById('avatarDisplay').textContent = savedName.charAt(0).toUpperCase();
+        }
+    </script>
+
 </body>
 </html>
