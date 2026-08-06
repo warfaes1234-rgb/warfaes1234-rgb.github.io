@@ -235,9 +235,9 @@
         </section>
 
         <div class="stats">
-            <div class="stat-card"><div class="number">0</div><div class="label">Продаж</div></div>
-            <div class="stat-card"><div class="number">1</div><div class="label">Пользователь</div></div>
-            <div class="stat-card"><div class="number">1</div><div class="label">День работы</div></div>
+            <div class="stat-card"><div class="number" id="salesCount">0</div><div class="label">Продаж</div></div>
+            <div class="stat-card"><div class="number" id="usersCount">1</div><div class="label">Пользователей</div></div>
+            <div class="stat-card"><div class="number" id="daysCount">1</div><div class="label">День работы</div></div>
             <div class="stat-card"><div class="number">0</div><div class="label">Отзывов</div></div>
         </div>
 
@@ -274,11 +274,50 @@
     </div>
 
     <script>
+        // ===== ИМЯ ПОЛЬЗОВАТЕЛЯ =====
         const savedName = localStorage.getItem('vpho_username');
         if (savedName) {
             document.getElementById('usernameDisplay').textContent = savedName;
             document.getElementById('avatarDisplay').textContent = savedName.charAt(0).toUpperCase();
         }
+
+        // ===== АВТОМАТИЧЕСКИЙ ПОДСЧЁТ ДНЕЙ =====
+        const startDate = new Date('2026-08-05'); // ДАТА ОТКРЫТИЯ
+        const now = new Date();
+        const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24)) + 1;
+        document.getElementById('daysCount').textContent = diffDays;
+
+        // ===== СЧЁТЧИК ПОЛЬЗОВАТЕЛЕЙ (через localStorage) =====
+        // Проверяем, есть ли уже счётчик в localStorage
+        let userCount = localStorage.getItem('vpho_userCount');
+        if (userCount === null) {
+            // Если нет — создаём и ставим 1
+            userCount = 1;
+            localStorage.setItem('vpho_userCount', userCount);
+        } else {
+            // Если есть — просто показываем
+            userCount = parseInt(userCount);
+        }
+        document.getElementById('usersCount').textContent = userCount;
+
+        // ===== СЧЁТЧИК ПРОДАЖ (пока 0, меняй вручную) =====
+        // Если хочешь менять продажи вручную — просто поменяй цифру в localStorage
+        let sales = localStorage.getItem('vpho_sales');
+        if (sales === null) {
+            sales = 0;
+            localStorage.setItem('vpho_sales', sales);
+        } else {
+            sales = parseInt(sales);
+        }
+        document.getElementById('salesCount').textContent = sales;
+
+        // ===== ФУНКЦИЯ ДЛЯ ДОБАВЛЕНИЯ ПРОДАЖ (вызывай после покупки) =====
+        // function addSale() {
+        //     let current = parseInt(localStorage.getItem('vpho_sales')) || 0;
+        //     current++;
+        //     localStorage.setItem('vpho_sales', current);
+        //     document.getElementById('salesCount').textContent = current;
+        // }
     </script>
 
 </body>
